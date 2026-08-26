@@ -22,7 +22,7 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<title>Trace Merge Drop-Set Bounding | Apache SkyWalking</title><meta property="og:url" content="/docs/skywalking-banyandb/next/design/trace-drop-set-bounding/">
+<title>Trace Merge Drop-Set Bounding | Apache SkyWalking</title><meta property="og:url" content="/docs/skywalking-banyandb/next/design/archive/0.11.0/trace-drop-set-bounding/">
   <meta property="og:site_name" content="Apache SkyWalking">
   <meta property="og:title" content="Trace Merge Drop-Set Bounding">
   <meta property="og:description" content="Trace Merge Drop-Set Bounding Status This document specifies a bound on the merge-wide dropped-trace-ID collector introduced by Phase 6 of the merge optimization plan, which was unbounded in the number of dropped traces per merge.
@@ -1365,7 +1365,7 @@ Implemented, except the validation. The mechanism (DS-1, DS-1b), the budget reso
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 523a151</div>
+                  <div class="commit-id">Commit Id: ba66af9</div>
                 
 
 
@@ -1919,11 +1919,11 @@ operator after a merge that never hit one.</li>
           <td>Retained-by-ceiling and capped-merge counters.</td>
       </tr>
       <tr>
-          <td><code>docs/design/post-trace-pipeline.md:630-632</code></td>
+          <td><code>post-trace-pipeline.md:630-632</code></td>
           <td>Note that a merge may stop dropping at its ceiling; the pruning predicate and lockstep publication are unchanged.</td>
       </tr>
       <tr>
-          <td><code>docs/design/trace-pipeline-merge-optimization-plan.md</code> Phase 6</td>
+          <td><code>trace-pipeline-merge-optimization-plan.md</code> Phase 6</td>
           <td>Record that the collector is now ceiling-bounded; the phase&rsquo;s exactness invariant is unchanged.</td>
       </tr>
   </tbody>
@@ -2269,6 +2269,24 @@ by this design; worth deciding separately.</li>
 
     </div>
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
