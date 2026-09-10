@@ -2525,7 +2525,7 @@
 <h4 id="simplifying-access-log-format">Simplifying Access Log Format</h4>
 <p>Typically, we don’t need all the information in the access log, so we can often simplify it to get what we need. The following command simplifies the access log format to only display basic information:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>istioctl install -y --set <span style="color:#953800">profile</span><span style="color:#0550ae">=</span>demo <span style="color:#0a3069">\
-</span></span></span><span style="display:flex;"><span>   <span style="color:#f6f8fa;background-color:#82071e">-</span>-set meshConfig.accessLogFormat<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;[%START_TIME%] \&#34;%REQ(:METHOD)% %REQ(X-ENVOY-ORIGINAL-PATH?:PATH)% %PROTOCOL%\&#34; %RESPONSE_CODE%\n&#34;</span>
+</span></span></span><span style="display:flex;"><span>   --set meshConfig.accessLogFormat<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;[%START_TIME%] \&#34;%REQ(:METHOD)% %REQ(X-ENVOY-ORIGINAL-PATH?:PATH)% %PROTOCOL%\&#34; %RESPONSE_CODE%\n&#34;</span>
 </span></span></code></pre></div><p>After simplifying the access log format, we found that the QPS increased from <strong>5.7K</strong> to <strong>5.9K</strong>. When executing the on-CPU profiling again, the CPU usage of log formatting dropped from <strong>2.4%</strong> to <strong>0.7%</strong>.</p>
 <p>Simplifying the log format helped us to improve the performance.</p>
 <h2 id="off-cpu-profiling">Off-CPU Profiling</h2>
