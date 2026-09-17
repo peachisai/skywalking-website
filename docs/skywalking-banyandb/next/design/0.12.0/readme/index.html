@@ -22,26 +22,20 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<title>Measure Vec Flag-Off Rollback | Apache SkyWalking</title><meta property="og:url" content="/docs/skywalking-banyandb/next/operation/troubleshooting/measure-vec-flag-off-rollback/">
+<title>0.12.0 Design Documents | Apache SkyWalking</title><meta property="og:url" content="/docs/skywalking-banyandb/next/design/0.12.0/readme/">
   <meta property="og:site_name" content="Apache SkyWalking">
-  <meta property="og:title" content="Measure Vec Flag-Off Rollback">
-  <meta property="og:description" content="Measure Vec Flag-Off Rollback This runbook documents the kill-switch for the vectorized distributed measure query path and explains how to roll back to the legacy row-path if a production incident requires it.
-Background Since Phase 6 of the vectorized distributed plan (see banyand/dquery/measure.go), the routing decision in the distributed measure query handler is a single boolean:
-data.MeasureWireModeRaw() == true → vecplan.AnalyzeDistributed (production default) data.MeasureWireModeRaw() == false → logical_measure.DistributedAnalyze (rollback path) There is no longer a useVecDistributedMeasurePlan predicate or a per-shape gate. Every request shape (non-agg, Agg, OrderBy-by-index-rule, multi-group, Top, GroupBy, and combinations) goes through the vec plan when the flag is on.">
+  <meta property="og:title" content="0.12.0 Design Documents">
+  <meta property="og:description" content="0.12.0 Design Documents Native inverted-index replacement Tag aggregation and time bucketing in the measure query engine">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="docs">
 
-  <meta itemprop="name" content="Measure Vec Flag-Off Rollback">
-  <meta itemprop="description" content="Measure Vec Flag-Off Rollback This runbook documents the kill-switch for the vectorized distributed measure query path and explains how to roll back to the legacy row-path if a production incident requires it.
-Background Since Phase 6 of the vectorized distributed plan (see banyand/dquery/measure.go), the routing decision in the distributed measure query handler is a single boolean:
-data.MeasureWireModeRaw() == true → vecplan.AnalyzeDistributed (production default) data.MeasureWireModeRaw() == false → logical_measure.DistributedAnalyze (rollback path) There is no longer a useVecDistributedMeasurePlan predicate or a per-shape gate. Every request shape (non-agg, Agg, OrderBy-by-index-rule, multi-group, Top, GroupBy, and combinations) goes through the vec plan when the flag is on.">
-  <meta itemprop="wordCount" content="553">
+  <meta itemprop="name" content="0.12.0 Design Documents">
+  <meta itemprop="description" content="0.12.0 Design Documents Native inverted-index replacement Tag aggregation and time bucketing in the measure query engine">
+  <meta itemprop="wordCount" content="16">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Measure Vec Flag-Off Rollback">
-  <meta name="twitter:description" content="Measure Vec Flag-Off Rollback This runbook documents the kill-switch for the vectorized distributed measure query path and explains how to roll back to the legacy row-path if a production incident requires it.
-Background Since Phase 6 of the vectorized distributed plan (see banyand/dquery/measure.go), the routing decision in the distributed measure query handler is a single boolean:
-data.MeasureWireModeRaw() == true → vecplan.AnalyzeDistributed (production default) data.MeasureWireModeRaw() == false → logical_measure.DistributedAnalyze (rollback path) There is no longer a useVecDistributedMeasurePlan predicate or a per-shape gate. Every request shape (non-agg, Agg, OrderBy-by-index-rule, multi-group, Top, GroupBy, and combinations) goes through the vec plan when the flag is on.">
+  <meta name="twitter:title" content="0.12.0 Design Documents">
+  <meta name="twitter:description" content="0.12.0 Design Documents Native inverted-index replacement Tag aggregation and time bucketing in the measure query engine">
 
 
 
@@ -60,7 +54,7 @@ data.MeasureWireModeRaw() == true → vecplan.AnalyzeDistributed (production def
 
 
 
-    <title>Measure Vec Flag-Off Rollback | Apache SkyWalking</title>
+    <title>0.12.0 Design Documents | Apache SkyWalking</title>
   </head>
   <body class="td-page  project-doc">
     <header>
@@ -1368,7 +1362,7 @@ data.MeasureWireModeRaw() == true → vecplan.AnalyzeDistributed (production def
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: c664390</div>
+                  <div class="commit-id">Commit Id: 0179585</div>
                 
 
 
@@ -1381,72 +1375,11 @@ data.MeasureWireModeRaw() == true → vecplan.AnalyzeDistributed (production def
               <i class="iconfont icon-menu-doc doc-menu-button"></i>
               
 <div class="td-content">
-	<h1 id="measure-vec-flag-off-rollback">Measure Vec Flag-Off Rollback</h1>
-<p>This runbook documents the kill-switch for the vectorized distributed measure query path and explains how to roll back to the legacy row-path if a production incident requires it.</p>
-<h2 id="background">Background</h2>
-<p>Since Phase 6 of the vectorized distributed plan (see <code>banyand/dquery/measure.go</code>), the routing decision in the distributed measure query handler is a single boolean:</p>
-<pre tabindex="0"><code>data.MeasureWireModeRaw() == true  →  vecplan.AnalyzeDistributed  (production default)
-data.MeasureWireModeRaw() == false →  logical_measure.DistributedAnalyze  (rollback path)
-</code></pre><p>There is no longer a <code>useVecDistributedMeasurePlan</code> predicate or a per-shape gate. Every request shape (non-agg, Agg, OrderBy-by-index-rule, multi-group, Top, GroupBy, and combinations) goes through the vec plan when the flag is on.</p>
-<h2 id="what-the-flag-controls">What the flag controls</h2>
-<p><code>data.MeasureWireModeRaw()</code> reads a per-process atomic boolean set at startup by <code>data.SetMeasureWireModeRaw(true)</code>. When true, the data-node wire codec switches from <code>proto.Marshal</code>/<code>proto.Unmarshal</code> (<code>InternalQueryResponse</code>) to Apache Arrow record-batch frames. The liaison node&rsquo;s distributed handler then dispatches to <code>vecplan.AnalyzeDistributed</code> instead of the row-path <code>distributedPlan</code>.</p>
-<h2 id="how-to-flip-it-off-in-a-running-cluster">How to flip it off in a running cluster</h2>
-<p>The flag is set at process startup. To disable it:</p>
-<ol>
-<li>Locate the BanyanDB node configuration (typically <code>bydb.yaml</code> or the Helm values file).</li>
-<li>Set the measure wire mode to proto (row) mode. The exact configuration key is <code>measure.wireMode: proto</code> (or the equivalent environment variable <code>BYDB_MEASURE_WIRE_MODE=proto</code>).</li>
-<li>Perform a rolling restart of liaison and data nodes. Because the flag controls per-process codec selection, both liaison and data nodes must run the same mode; a mixed-mode cluster will return decode errors.</li>
-</ol>
-<p>After restart, verify with:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bydbctl measure query --name &lt;name&gt; --group &lt;group&gt; --limit <span style="color:#0550ae">1</span>
-</span></span></code></pre></div><p>A successful response confirms the row path is active.</p>
-<h2 id="which-code-path-takes-over-when-off">Which code path takes over when off</h2>
-<p>When <code>data.MeasureWireModeRaw()</code> returns false, the liaison&rsquo;s <code>Rev</code> handler in <code>banyand/dquery/measure.go</code> calls:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#1f2328">logical_measure</span><span style="color:#1f2328">.</span><span style="color:#6639ba">DistributedAnalyze</span><span style="color:#1f2328">(</span><span style="color:#1f2328">queryCriteria</span><span style="color:#1f2328">,</span><span style="color:#fff"> </span><span style="color:#1f2328">schemas</span><span style="color:#1f2328">)</span><span style="color:#fff">
-</span></span></span></code></pre></div><p>This returns a <code>distributedPlan</code> (in <code>pkg/query/logical/measure/measure_plan_distributed.go</code>) that:</p>
+	<h1 id="0120-design-documents">0.12.0 Design Documents</h1>
 <ul>
-<li>Broadcasts <code>InternalQueryRequest</code> to data nodes using <code>proto.Marshal</code> wire encoding.</li>
-<li>Receives <code>*measurev1.InternalQueryResponse</code> from each data node.</li>
-<li>Performs a k-way sort-merge via <code>sortedMIterator</code> using <code>sort.NewItemIter</code>.</li>
-<li>Deduplicates by <code>(Sid, Timestamp)</code> hash and version across replicas.</li>
+<li><a href="../native-inverted-index/readme">Native inverted-index replacement</a></li>
+<li><a href="../tag-aggregation/readme">Tag aggregation and time bucketing in the measure query engine</a></li>
 </ul>
-<p>The <code>[]byte</code> raw-frame branch that previously existed in this code path was removed in Phase 6 — it was unreachable once the liaison always routes raw-mode requests through vec.</p>
-<h2 id="operational-constraints-of-the-flag-off-path">Operational constraints of the flag-off path</h2>
-<ul>
-<li><strong>Higher latency</strong>: each data node serialises results to proto, sends over the wire, and the liaison deserialises before merge. Under the vec path, data stays in columnar Arrow format across the wire and into the merge.</li>
-<li><strong>No native multi-group merge</strong>: the row-path <code>sortedMIterator</code> merges across data nodes but does not perform cross-group native columnar aggregation. Multi-group queries still work but via the proto round-trip.</li>
-<li><strong>No native Top-N merge</strong>: Top-N is evaluated per data node; the liaison re-sorts and truncates. Under vec, Top-N is evaluated natively in the columnar pipeline.</li>
-<li><strong>Proto size overhead</strong>: <code>InternalQueryResponse</code> encodes every data point with its full tag and field set in proto format, which is larger than Arrow record batches for wide schemas.</li>
-</ul>
-<h2 id="when-to-use-the-rollback">When to use the rollback</h2>
-<p>Use the flag-off path only during incident response when the vec path produces incorrect results or panics that cannot be fixed with a hot patch. The vec path is the production default and has been validated by the full distributed integration suite. After the incident is resolved, re-enable raw wire mode and perform another rolling restart.</p>
-<h2 id="relevant-source-locations">Relevant source locations</h2>
-<table>
-  <thead>
-      <tr>
-          <th>File</th>
-          <th>Purpose</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>banyand/dquery/measure.go</code></td>
-          <td>Liaison routing — branches on <code>data.MeasureWireModeRaw()</code></td>
-      </tr>
-      <tr>
-          <td><code>api/data/codec.go</code></td>
-          <td><code>SetMeasureWireModeRaw</code> / <code>MeasureWireModeRaw</code> definitions</td>
-      </tr>
-      <tr>
-          <td><code>pkg/query/logical/measure/measure_plan_distributed.go</code></td>
-          <td>Row-path distributed plan (<code>distributedPlan</code>)</td>
-      </tr>
-      <tr>
-          <td><code>pkg/query/vectorized/measure/plan/</code></td>
-          <td>Vec distributed plan (<code>vecplan.AnalyzeDistributed</code>)</td>
-      </tr>
-  </tbody>
-</table>
 
 </div>
 
@@ -1475,22 +1408,6 @@ data.MeasureWireModeRaw() == false →  logical_measure.DistributedAnalyze  (rol
 
 
 
-
-<nav id="TableOfContents">
-  <ul>
-    <li><a href="#measure-vec-flag-off-rollback">Measure Vec Flag-Off Rollback</a>
-      <ul>
-        <li><a href="#background">Background</a></li>
-        <li><a href="#what-the-flag-controls">What the flag controls</a></li>
-        <li><a href="#how-to-flip-it-off-in-a-running-cluster">How to flip it off in a running cluster</a></li>
-        <li><a href="#which-code-path-takes-over-when-off">Which code path takes over when off</a></li>
-        <li><a href="#operational-constraints-of-the-flag-off-path">Operational constraints of the flag-off path</a></li>
-        <li><a href="#when-to-use-the-rollback">When to use the rollback</a></li>
-        <li><a href="#relevant-source-locations">Relevant source locations</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
 
 
 
