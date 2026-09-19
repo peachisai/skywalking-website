@@ -1,0 +1,213 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache SkyWalking – 博客</title>
+    <link>https://skywalking.apache.org/zh/</link>
+    <description>Apache SkyWalking 中文博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 12 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://skywalking.apache.org/zh/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>不止于回放：看清 Claude Code 的用量与文件变更</title>
+      <link>https://skywalking.apache.org/zh/2026-09-12-ai-sessionizer-workspace-changes/</link>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-09-12-ai-sessionizer-workspace-changes/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>AI</category>
+      <category>Engineering</category>
+      <category>Community</category>
+      <description>汇总多次会话、多台机器上的 Claude Code 用量，结合对话、工具调用和文件差异，看清智能体做了什么、修改了什么，以及消耗了哪些资源。</description>
+    </item>
+    <item>
+      <title>Horizon UI 1.0 正式发布：SkyWalking 新一代控制台接棒 Booster</title>
+      <link>https://skywalking.apache.org/zh/2026-09-10-horizon-ui-1-0-ga/</link>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-09-10-horizon-ui-1-0-ga/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Release</category>
+      <category>Community</category>
+      <description>Horizon UI 1.0 正式发布，社区投票决定由 Horizon 接替 Booster，承担 SkyWalking 今后的 UI 开发与维护。本文介绍新控制台、迁移要点，以及 AI 智能体可观测性的最新进展。</description>
+    </item>
+    <item>
+      <title>BanyanDB 0.11.0：新特性与升级指南</title>
+      <link>https://skywalking.apache.org/zh/banyandb-0-11-0-vectorized-queries-by-default-explained/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/banyandb-0-11-0-vectorized-queries-by-default-explained/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">BanyanDB 团队</dc:creator>
+      <category>Release</category>
+      <category>Storage</category>
+      <description>BanyanDB 0.11.0：默认启用向量化查询、可插拔 Trace 后采样、Schema 屏障，以及不可忽略的升级顺序。</description>
+    </item>
+    <item>
+      <title>SkyWalking 11 与 BanyanDB 0.11：在存储引擎内部实现 Trace 尾部采样</title>
+      <link>https://skywalking.apache.org/zh/2026-09-07-banyandb-trace-tail-sampling/</link>
+      <pubDate>Mon, 07 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-09-07-banyandb-trace-tail-sampling/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">万凯</dc:creator>
+      <category>Tracing</category>
+      <category>Storage</category>
+      <description>SkyWalking 11.0.0 与 BanyanDB 0.11.0 新增 Trace 尾部采样：采样在 BanyanDB 数据节点的 compaction 过程中进行，每条 Trace 都在落盘之后被整体判定，被丢弃的 Trace 会回收已经写入的空间。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · AI Assistant：用日常语言查询你的可观测性数据</title>
+      <link>https://skywalking.apache.org/zh/2026-07-06-horizon-ui-ai-assistant/</link>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-07-06-horizon-ui-ai-assistant/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Release</category>
+      <category>AI</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 新增的 AI Assistant 可以用和 UI 相同的图表、拓扑和表格回答运行中系统的问题；它只读、按权限返回结果，并运行在你自己接入的高性价比模型上。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 13/17：平台与集群自检</title>
+      <link>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-platform-introspection/</link>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-platform-introspection/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Engineering</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第十三篇：Platform monitoring 下的三个只读入口，用来查看 OAP 集群是否健康、实际运行配置是什么，以及各类数据会保留多久，包括 BanyanDB 的 hot/warm/cold 生命周期。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 14/17：访问控制与安全</title>
+      <link>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-access-control-and-security/</link>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-access-control-and-security/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Engineering</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第十四篇：Horizon 自己的访问控制体系，包括由服务端强制执行的四级 RBAC、本地与 LDAP/AD 认证、append-only audit log、仅在 LDAP 故障时可用的 break-glass 入口，以及五套内置主题。所有逻辑都在 Horizon BFF 中实现，对任何 OAP 版本都一致。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 15/17：用模板定制控制台</title>
+      <link>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-customization-and-templates/</link>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-customization-and-templates/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Engineering</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第十五篇：整个控制台都由可编辑模板驱动。你可以把任意 layer 或 overview 打开成模板，在本地草稿里调整组件、widget 和文案，预览后发布到 OAP 给整个组织使用，并在发布前查看差异，也可以导出和导入。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 16/17：八种语言的本地化</title>
+      <link>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-localization-i18n/</link>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-localization-i18n/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Engineering</category>
+      <category>Community</category>
+      <description>Horizon UI 系列第十六篇：Horizon 支持八种语言。本地化不是每次渲染时重新翻译，而是在服务端把翻译 overlay 合并到同一套 template 上；用户可以从顶栏切换语言，也可以在 Translations 管理页点选任意 widget 直接补翻译，而 OAP 返回的数据始终保持原样。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 17/17：安装与迁移</title>
+      <link>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-getting-started-and-migration/</link>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-30-horizon-ui-getting-started-and-migration/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Release</category>
+      <category>Community</category>
+      <description>Meet Horizon UI 系列收官篇：用一个环境变量驱动的容器启动 Horizon，指向已有 OAP；如果你还在使用上一代 UI，也可以把 Horizon 平滑替换进去。文中还说明 OAP 10.x 和 11.x 的兼容边界：哪些功能只需要 query port，哪些需要 OAP 11 的 admin host。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 10/17：告警与 Incident 排查</title>
+      <link>https://skywalking.apache.org/zh/2026-06-29-horizon-ui-alarms-and-incident-triage/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-29-horizon-ui-alarms-and-incident-triage/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Metrics</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第十篇：活跃告警不再按事件堆叠，而是按 incident 归并；触发规则时的 MQE 指标快照可以直接回放，同一套 incident 模型也会出现在顶栏、仪表盘和 3D 地图里。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 11/17：运行时规则与实时调试</title>
+      <link>https://skywalking.apache.org/zh/2026-06-29-horizon-ui-runtime-rules-and-live-debugging/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-29-horizon-ui-runtime-rules-and-live-debugging/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Engineering</category>
+      <category>Metrics</category>
+      <description>Horizon UI 系列第十一篇：在浏览器里编辑 SkyWalking 的 OAL/MAL/LAL 分析规则，通过可恢复的集群确认流程让变更在运行中的 OAP 上生效；再用三个标签页的 Live Debugger 让同一条规则跑在真实数据上，看清它到底算出了什么。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 12/17：Inspect，跨 layer 查询工具</title>
+      <link>https://skywalking.apache.org/zh/2026-06-29-horizon-ui-inspect-cross-layer-query/</link>
+      <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-29-horizon-ui-inspect-cross-layer-query/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Engineering</category>
+      <category>Metrics</category>
+      <description>Horizon UI 系列第十二篇：Operate 下的 Inspect 家族，包括能看到每个指标由哪条规则定义的指标目录和 MQE 看板，以及不必先选择 layer 就能在全局范围查询的 trace 和 log 入口。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 9/17：五种 Profiler，一套火焰图</title>
+      <link>https://skywalking.apache.org/zh/2026-06-26-horizon-ui-profiling/</link>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-26-horizon-ui-profiling/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Profiling</category>
+      <category>Engineering</category>
+      <description>Horizon UI 系列第九篇：SkyWalking 的五种 profiler：trace、async（JVM）、eBPF、Go pprof 和 network。前四种统一进入同一套火焰图和调用树视图，network 则用蜂窝拓扑展示进程间通信。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 7/17：日志探索器</title>
+      <link>https://skywalking.apache.org/zh/2026-06-23-horizon-ui-log-explorer/</link>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-23-horizon-ui-log-explorer/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Logging</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第七篇：两类日志视图，一种查看已采集、已索引、可关联 Trace 的存储日志流，并提供按级别堆叠的直方图；另一种按需实时查看 Kubernetes pod 的容器输出。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 8/17：浏览器错误与 Source Map</title>
+      <link>https://skywalking.apache.org/zh/2026-06-23-horizon-ui-browser-errors-and-source-maps/</link>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-23-horizon-ui-browser-errors-and-source-maps/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Logging</category>
+      <category>Engineering</category>
+      <description>Horizon UI 系列第八篇：浏览器端 agent 上报的 JavaScript 错误流，以及如何借助 source map 把生产环境压缩后的 stack 还原到原始文件、行、列、符号和源码片段。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 5/17：3D 基础设施地图</title>
+      <link>https://skywalking.apache.org/zh/2026-06-22-horizon-ui-3d-infrastructure-map/</link>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-22-horizon-ui-3d-infrastructure-map/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Cloud Native</category>
+      <category>Engineering</category>
+      <description>Horizon UI 系列第五篇：用一个 WebGL 场景把整个部署放到同一张 3D 地图里，把各个 Layer 的服务渲染成立方体，并同时展示实时流量、告警和调用关系。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 6/17：Trace 探索器</title>
+      <link>https://skywalking.apache.org/zh/2026-06-22-horizon-ui-trace-explorer/</link>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-22-horizon-ui-trace-explorer/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Tracing</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第六篇：位于 Layer 内的分布式 Trace 探索器：先配置条件再查询，在时延分布图上框选异常 Trace，并用瀑布图、调用树和统计表阅读同一条 Trace。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 1/17：SkyWalking 新一代可观测性控制台</title>
+      <link>https://skywalking.apache.org/zh/2026-06-21-skywalking-horizon-ui-introduction/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-21-skywalking-horizon-ui-introduction/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Release</category>
+      <category>Cloud Native</category>
+      <description>介绍 Apache SkyWalking Horizon UI：它沿用现有 OAP 后端协议，重新设计前端控制台，让观测、运维、治理和定制回到同一个入口。</description>
+    </item>
+    <item>
+      <title>认识 Horizon UI · 2/17：动态仪表盘、MQE 与指标格式化</title>
+      <link>https://skywalking.apache.org/zh/2026-06-21-horizon-ui-dashboards-and-mqe/</link>
+      <pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://skywalking.apache.org/zh/2026-06-21-horizon-ui-dashboards-and-mqe/</guid>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">吴晟</dc:creator>
+      <category>Metrics</category>
+      <category>Cloud Native</category>
+      <description>Horizon UI 系列第二篇：仪表盘如何由 MQE 表达式驱动，如何按当前服务、实例或 endpoint 自动取舍组件并跳过无关查询，以及如何把编码值、耗时和大数值格式化成适合排查时阅读的样子。</description>
+    </item>
+  </channel>
+</rss>
