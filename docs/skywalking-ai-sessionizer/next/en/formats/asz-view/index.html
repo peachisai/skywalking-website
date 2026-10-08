@@ -31,7 +31,7 @@
 
   <meta itemprop="name" content="asz.view">
   <meta itemprop="description" content="asz.view asz.view is one conversation, rebuilt from its Session Flow and its Session Data, as one document: everything a viewer renders, and nothing a viewer must compute. It is the final form of a conversation, the one a page draws and the one a person reads. Every talk is a tree of runs and steps with the text the referenced records carry, and the streams, the segments, the relations, the rounds and the files sit beside them, each verified. The evidence is inside it once, so a viewer never opens a .sd file; the ref on a node is a citation, not a pointer to fetch.">
-  <meta itemprop="wordCount" content="5369">
+  <meta itemprop="wordCount" content="5417">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="asz.view">
   <meta name="twitter:description" content="asz.view asz.view is one conversation, rebuilt from its Session Flow and its Session Data, as one document: everything a viewer renders, and nothing a viewer must compute. It is the final form of a conversation, the one a page draws and the one a person reads. Every talk is a tree of runs and steps with the text the referenced records carry, and the streams, the segments, the relations, the rounds and the files sit beside them, each verified. The evidence is inside it once, so a viewer never opens a .sd file; the ref on a node is a citation, not a pointer to fetch.">
@@ -1519,7 +1519,7 @@
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 6691c36</div>
+                  <div class="commit-id">Commit Id: 8ea6f31</div>
                 
 
 
@@ -1961,20 +1961,23 @@ step; its file is still under <code>files</code>. Nothing is joined by position 
 the runtime sent the model: the system prompt and the tool schemas. The record that carries each is
 named by its adapter with a flag, <code>system_prompt</code> or <code>tool_schemas</code>, as <a href="../session-data#flags">Session
 Data</a> lists, and a server withholds by those names, never by the text or the
-size of a part. asz knows nothing about who is reading. <code>asz view</code> withholds what its
-<a href="../../setup/configuration#view">configuration</a> says for every reader, and a <code>hide</code> parameter on
-<code>/api/c/{id}/view</code>, <code>/api/c/{id}/record/{seq}/{row}</code> and <code>/api/c/{id}/files</code> adds names for one
-request and never takes one away: <code>?hide=system_prompt,tool_schemas</code>, or the parameter given more
-than once. Spaces around a name and empty entries are ignored, and a repeated name counts once. A
-name that is not a flag a reader may withhold is refused with status 400. So is any
-other key whose letters alone spell <code>hide</code>, in any case, such as <code>Hide</code>, <code>hide[]</code> or <code>hide[0]</code>, and
-a query that does not parse, since either would otherwise read as no <code>hide</code> at all. A host that
-serves the API through its own route decides per reader, and adds the parameter to every request it
-serves for a reader who may not see the material: the document, every record and every file. asz&rsquo;s
-own page passes a <code>hide</code> in its address on to all three, so the Evidence tab never shows what the
-document withholds. Its links between the list and the conversations keep it too. That is not access
-control, because a reader can edit the address. Two audiences are two instances over the same root,
-each behind the deployment&rsquo;s own authentication.</p>
+size of a part. asz knows nothing about who is reading. <code>asz view</code> withholds what <code>view.hide</code> in
+its <a href="../../setup/configuration#view">configuration</a> says, and by default that is the whole answer: a
+request that carries a <code>hide</code> parameter is refused with status 400. With <code>view.hide_override</code> on, a
+<code>hide</code> parameter on <code>/api/c/{id}/view</code>, <code>/api/c/{id}/record/{seq}/{row}</code> and <code>/api/c/{id}/files</code>
+replaces <code>view.hide</code> for that request: <code>?hide=system_prompt,tool_schemas</code>, or the parameter given
+more than once, and <code>?hide=</code> with no name withholds nothing. A request that sets no <code>hide</code> is served
+what <code>view.hide</code> says. Spaces around a name and empty entries are ignored, and a repeated name counts
+once. A name that is not a flag a reader may withhold is refused with status 400. So is any other key
+whose letters alone spell <code>hide</code>, in any case, such as <code>Hide</code>, <code>hide[]</code> or <code>hide[0]</code>, and a query
+that does not parse, since either would otherwise read as no <code>hide</code> at all. A host that serves the API
+through its own route, on an instance with <code>view.hide_override</code> on, decides per reader, and sets the
+parameter on every request it serves: the document, every record and every file. asz&rsquo;s own page
+passes a <code>hide</code> in its address on to all three, so the Evidence tab never shows what the document
+withholds, and shows the refusal of an instance that does not take the parameter. Its links between
+the list and the conversations keep it too. That is not access control, because a reader can edit
+the address. Two audiences are two instances over the same root, each behind the deployment&rsquo;s own
+authentication, or one such host.</p>
 <p>Which records carry the flags depends on the adapter. The Claude Code adapter names two
 attachments: the prompt snapshot that Claude Code and a runtime built on the Agent SDK write, and
 the deferred tools record, which lists the tools offered on demand with their schemas. See
