@@ -37,7 +37,7 @@ adapters: - name: langsmith-ingest enabled: true listen: 127.0.0.1:1985 Then asz
 The reason it is that small: langsmith, the tracing client, is a dependency of langchain-core. Every LangChain application already carries it. Pointing it at asz is the whole integration.
 Turn the receiver on In asz.yaml:
 adapters: - name: langsmith-ingest enabled: true listen: 127.0.0.1:1985 Then asz collect (or asz server, which serves the page beside it):">
-  <meta itemprop="wordCount" content="881">
+  <meta itemprop="wordCount" content="930">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LangChain and LangGraph">
   <meta name="twitter:description" content="LangChain and LangGraph asz assembles conversations from an agent built on LangChain or LangGraph without changing the application. It takes four environment variables.
@@ -1528,7 +1528,7 @@ adapters: - name: langsmith-ingest enabled: true listen: 127.0.0.1:1985 Then asz
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 8ea6f31</div>
+                  <div class="commit-id">Commit Id: 7d270e3</div>
                 
 
 
@@ -1622,7 +1622,14 @@ session whose name says so, and invents nothing.</p>
 metadata instead:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0550ae">@traceable</span><span style="color:#1f2328">(</span>metadata<span style="color:#0550ae">=</span><span style="color:#1f2328">{</span><span style="color:#0a3069">&#34;thread_id&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;the-conversation&#34;</span><span style="color:#1f2328">})</span>
 </span></span><span style="display:flex;"><span><span style="color:#cf222e">def</span> <span style="color:#6639ba">answer</span><span style="color:#1f2328">(</span>question<span style="color:#1f2328">):</span> <span style="color:#0550ae">...</span>
-</span></span></code></pre></div><h2 id="what-owns-a-conversation">What owns a conversation</h2>
+</span></span></code></pre></div><p>In LangChain JS, the same goes on the client&rsquo;s <code>traceable</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#cf222e">const</span> <span style="color:#1f2328">answer</span> <span style="color:#0550ae">=</span> <span style="color:#1f2328">traceable</span><span style="color:#1f2328">(</span><span style="color:#cf222e">async</span> <span style="color:#1f2328">(</span><span style="color:#1f2328">question</span><span style="color:#1f2328">)</span> <span style="color:#1f2328">=&gt;</span> <span style="color:#1f2328">{</span> <span style="color:#57606a">/* ... */</span> <span style="color:#1f2328">},</span> <span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#1f2328">name</span><span style="color:#0550ae">:</span> <span style="color:#0a3069">&#34;answer&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#1f2328">metadata</span><span style="color:#0550ae">:</span> <span style="color:#1f2328">{</span> <span style="color:#1f2328">thread_id</span><span style="color:#0550ae">:</span> <span style="color:#0a3069">&#34;the-conversation&#34;</span> <span style="color:#1f2328">},</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">});</span>
+</span></span></code></pre></div><p>A run inside it that names no thread, such as a model call, is part of the same
+conversation.</p>
+<h2 id="what-owns-a-conversation">What owns a conversation</h2>
 <p>A thread key alone is not an identity. Two applications can both use the
 project <code>production</code> and the thread <code>123</code>, and merging them would put two
 people&rsquo;s histories in one conversation. So the receiver names the dimensions
