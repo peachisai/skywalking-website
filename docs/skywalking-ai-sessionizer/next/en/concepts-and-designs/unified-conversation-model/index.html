@@ -33,7 +33,7 @@ Why a model is needed Agent runtimes expose traces, logs, transcripts, provider 
   <meta itemprop="name" content="Unified Conversation Model">
   <meta itemprop="description" content="Unified Conversation Model SkyWalking AI Sessionizer assembles fragmented agent telemetry into one durable conversation structure. This document defines that structure. It is runtime-agnostic: every concept here must be expressible by any adapter, and no concept assumes a particular agent product. Runtime-specific mappings live under Adapters.
 Why a model is needed Agent runtimes expose traces, logs, transcripts, provider request bodies, tool events and subagent metadata as separate records. A single user-visible conversation can outlive one process, reactivate after a long idle period, and contain several concurrent agent execution lineages.">
-  <meta itemprop="wordCount" content="2379">
+  <meta itemprop="wordCount" content="2351">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Unified Conversation Model">
   <meta name="twitter:description" content="Unified Conversation Model SkyWalking AI Sessionizer assembles fragmented agent telemetry into one durable conversation structure. This document defines that structure. It is runtime-agnostic: every concept here must be expressible by any adapter, and no concept assumes a particular agent product. Runtime-specific mappings live under Adapters.
@@ -1229,6 +1229,14 @@ Why a model is needed Agent runtimes expose traces, logs, transcripts, provider 
 
     <li>
         
+            <a href="/docs/skywalking-ai-sessionizer/next/en/setup/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
             <a href="/docs/skywalking-ai-sessionizer/next/en/setup/claude-code-plugin">Claude Code Plugin</a>
         
     </li>
@@ -1393,6 +1401,22 @@ Why a model is needed Agent runtimes expose traces, logs, transcripts, provider 
 
     
 
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro-glossary">Kiro Glossary</a>
+        
+    </li>
+
+    
+
 </ul>
 
         
@@ -1522,7 +1546,7 @@ Why a model is needed Agent runtimes expose traces, logs, transcripts, provider 
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 8104ada</div>
+                  <div class="commit-id">Commit Id: 6fbf0ae</div>
                 
 
 
@@ -1998,9 +2022,7 @@ a word but not where to look for it.</li>
 </ol>
 <p>The model lists the names a glossary is checked against in <code>model.Vocabulary</code>. For the
 <a href="../../adapters/claude-code-glossary">built-in runtime adapter</a>, a test fails when an entry breaks
-rule 2 or rule 3, or when a name in that list has no entry. The list leaves out one name the model
-emits, <code>control.notice</code>. So no test would fail if the entry for it were missing. The built-in
-glossary has that entry.</p>
+rule 2 or rule 3, or when a name in that list has no entry.</p>
 <h2 id="non-goals">Non-goals</h2>
 <ul>
 <li>Grouping work by human or principal identity.</li>
@@ -2169,6 +2191,12 @@ glossary has that entry.</p>
 
     </div>
     
+
+
+
+
+
+
 
 
 

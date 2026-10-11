@@ -31,7 +31,7 @@
 
   <meta itemprop="name" content="Session Data">
   <meta itemprop="description" content="Session Data Session Data is what was actually in a conversation, in one shape regardless of which agent produced it. A landed file has the extension .sd. Its first line is a header carrying everything constant for the file, and its last line closes the file with a digest. Every line between them is one source record, converted, with its content broken into parts named for what they are: a message, a thought, a call, its result.">
-  <meta itemprop="wordCount" content="5737">
+  <meta itemprop="wordCount" content="5774">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Session Data">
   <meta name="twitter:description" content="Session Data Session Data is what was actually in a conversation, in one shape regardless of which agent produced it. A landed file has the extension .sd. Its first line is a header carrying everything constant for the file, and its last line closes the file with a digest. Every line between them is one source record, converted, with its content broken into parts named for what they are: a message, a thought, a call, its result.">
@@ -1226,6 +1226,14 @@
 
     <li>
         
+            <a href="/docs/skywalking-ai-sessionizer/next/en/setup/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
             <a href="/docs/skywalking-ai-sessionizer/next/en/setup/claude-code-plugin">Claude Code Plugin</a>
         
     </li>
@@ -1390,6 +1398,22 @@
 
     
 
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro-glossary">Kiro Glossary</a>
+        
+    </li>
+
+    
+
 </ul>
 
         
@@ -1519,7 +1543,7 @@
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 8104ada</div>
+                  <div class="commit-id">Commit Id: 6fbf0ae</div>
                 
 
 
@@ -1681,9 +1705,9 @@ is a directory with one file per body, and each record names its own file.</p>
       </tr>
       <tr>
           <td><code>agent_meta</code></td>
-          <td>what the runtime recorded about a child agent when it started it</td>
-          <td>one record, <code>from: runtime</code>, with <code>child</code> and <code>label</code>, and a <code>data</code> part</td>
-          <td>the child&rsquo;s <code>stream</code> node, for its label</td>
+          <td>what the runtime recorded about an agent: about a child agent when it started it, or, from Kiro, about the session</td>
+          <td>one record, <code>from: runtime</code>, with <code>child</code> and <code>label</code>, and a <code>data</code> part. Kiro&rsquo;s is the session&rsquo;s header, in the <code>main</code> stream, with <code>label</code> and no <code>child</code></td>
+          <td>the child&rsquo;s <code>stream</code> node, for its label; in the <code>main</code> stream, the session node&rsquo;s title</td>
       </tr>
       <tr>
           <td><code>journal</code></td>
@@ -1725,8 +1749,8 @@ is a directory with one file per body, and each record names its own file.</p>
 </table>
 <p>A source that is one document, not a stream of lines, lands as one record with <code>ord</code> 1 and <code>off</code> 0.
 Its <code>sha</code> and <code>bytes</code> cover the whole document. The Claude Code adapter&rsquo;s <code>agent_meta</code>,
-<code>workflow_manifest</code> and <code>workflow_script</code> files are of this kind, and a new version of the document
-lands as a new file (see <a href="../storage-root#snapshot-cursors">Snapshot cursors</a>).</p>
+<code>workflow_manifest</code> and <code>workflow_script</code> files are of this kind, as is the Kiro adapter&rsquo;s
+<code>agent_meta</code>, and a new version of the document lands as a new file (see <a href="../storage-root#snapshot-cursors">Snapshot cursors</a>).</p>
 <p>Files of every kind are bound by the rounds&rsquo; <code>input_digest</code>, so a session travels or archives as
 all of them. A session&rsquo;s <code>agent_meta</code>, <code>workflow_manifest</code> and <code>workflow_script</code> records carry
 no time, so those files have no record time range.</p>
@@ -2447,6 +2471,12 @@ dialect: what its runtime calls each name the model uses. <code>cmd/asz</code> g
 
     </div>
     
+
+
+
+
+
+
 
 
 

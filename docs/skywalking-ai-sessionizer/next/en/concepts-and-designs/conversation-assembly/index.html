@@ -33,7 +33,7 @@ It reads the derived index, not the payloads. Structure resolution needs identif
   <meta itemprop="name" content="Conversation Assembly">
   <meta itemprop="description" content="Conversation Assembly Assembly turns landed records into the structure defined by the Unified Conversation Model, and appends the result to an append-only chain of immutable rounds.
 It reads the derived index, not the payloads. Structure resolution needs identifiers, not content: removing duplicate records needs record ids, grouping a provider call needs message ids, joining a tool needs tool-use ids, joining a spawn needs agent and run ids. Message text is read only when a conversation is rendered, and only for the records that appear in it.">
-  <meta itemprop="wordCount" content="3450">
+  <meta itemprop="wordCount" content="3541">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Conversation Assembly">
   <meta name="twitter:description" content="Conversation Assembly Assembly turns landed records into the structure defined by the Unified Conversation Model, and appends the result to an append-only chain of immutable rounds.
@@ -1229,6 +1229,14 @@ It reads the derived index, not the payloads. Structure resolution needs identif
 
     <li>
         
+            <a href="/docs/skywalking-ai-sessionizer/next/en/setup/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
             <a href="/docs/skywalking-ai-sessionizer/next/en/setup/claude-code-plugin">Claude Code Plugin</a>
         
     </li>
@@ -1393,6 +1401,22 @@ It reads the derived index, not the payloads. Structure resolution needs identif
 
     
 
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro-glossary">Kiro Glossary</a>
+        
+    </li>
+
+    
+
 </ul>
 
         
@@ -1522,7 +1546,7 @@ It reads the derived index, not the payloads. Structure resolution needs identif
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 8104ada</div>
+                  <div class="commit-id">Commit Id: 6fbf0ae</div>
                 
 
 
@@ -1619,7 +1643,7 @@ gives the index size on a later sample.</p>
       </tr>
       <tr>
           <td>3. Group provider calls</td>
-          <td>by message id, in line order</td>
+          <td>by message id, in line order; output that names no call is grouped into none</td>
       </tr>
       <tr>
           <td>4. Join tools</td>
@@ -1643,7 +1667,7 @@ gives the index size on a later sample.</p>
       </tr>
   </tbody>
 </table>
-<p>Seven rules in here are the opposite of the obvious choice, and each is the opposite because a
+<p>Eight rules in here are the opposite of the obvious choice, and each is the opposite because a
 measurement said so.</p>
 <p><strong>A record type is not what a record is.</strong> Every tool result in the corpus sits on a record whose
 type is <code>user</code>. Only a small fraction of <code>user</code> records are things a person said. Classification
@@ -1665,6 +1689,10 @@ again.</p>
 <p><strong>Group a provider call by message id, in line order.</strong> Never by walking the parent pointer forward,
 which drops a tool use on nearly one call in five; and never by request id, because a record the
 client fabricated can carry a real call&rsquo;s request id.</p>
+<p><strong>Output that names no call is grouped into none.</strong> Kiro&rsquo;s V3 engine lists the request ids of a
+turn and ties no record to one of them, so no record names its call. Grouping such output by turn
+or by record would draw call boundaries the runtime never recorded. So no <code>llm.call</code> is written,
+and the text, reasoning and tool uses are steps of the run that holds them.</p>
 <p><strong>Take usage from the last fragment in line order.</strong> Not from the fragment with a stop reason — a
 parent lineage stamps the same stop reason on every fragment — and never by adding fragments up,
 which multiplies the real number by the fragment count.</p>
@@ -1797,6 +1825,7 @@ commit step is not implemented.</p>
 </span></span><span style="display:flex;"><span>             ├ llm.call
 </span></span><span style="display:flex;"><span>             │  ├ message.assistant · thinking
 </span></span><span style="display:flex;"><span>             │  └ tool · agent.call
+</span></span><span style="display:flex;"><span>             ├ message.assistant · thinking · tool · agent.call, where no call is named
 </span></span><span style="display:flex;"><span>             ├ message.external · context.injection
 </span></span><span style="display:flex;"><span>             ├ agent.launch_ack
 </span></span><span style="display:flex;"><span>             └ runtime.notification
@@ -2108,6 +2137,12 @@ values and not a counter.</p>
 
     </div>
     
+
+
+
+
+
+
 
 
 

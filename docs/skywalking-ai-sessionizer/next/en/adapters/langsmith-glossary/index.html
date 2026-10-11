@@ -35,7 +35,7 @@ Two words here mean something other than what a reader might expect, and both ma
   <meta itemprop="description" content="LangChain Glossary What LangChain and its tracing client call the things the project glossary names, and where each one appears in the data they send.
 The dialect is langsmith/1. That names the vocabulary, not the adapter: langsmith-ingest says how records were acquired, the dialect says how they are read.
 Two words here mean something other than what a reader might expect, and both matter. The client’s session is the project, not a conversation. And its run is any step of the graph, so most runs are not what this model calls a Run — the invocation they share, trace_id, is.">
-  <meta itemprop="wordCount" content="998">
+  <meta itemprop="wordCount" content="1004">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LangChain Glossary">
   <meta name="twitter:description" content="LangChain Glossary What LangChain and its tracing client call the things the project glossary names, and where each one appears in the data they send.
@@ -1232,6 +1232,14 @@ Two words here mean something other than what a reader might expect, and both ma
 
     <li>
         
+            <a href="/docs/skywalking-ai-sessionizer/next/en/setup/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
             <a href="/docs/skywalking-ai-sessionizer/next/en/setup/claude-code-plugin">Claude Code Plugin</a>
         
     </li>
@@ -1396,6 +1404,22 @@ Two words here mean something other than what a reader might expect, and both ma
 
     
 
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro">Kiro</a>
+        
+    </li>
+
+    
+
+    <li>
+        
+            <a href="/docs/skywalking-ai-sessionizer/next/en/adapters/kiro-glossary">Kiro Glossary</a>
+        
+    </li>
+
+    
+
 </ul>
 
         
@@ -1525,7 +1549,7 @@ Two words here mean something other than what a reader might expect, and both ma
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 8104ada</div>
+                  <div class="commit-id">Commit Id: 6fbf0ae</div>
                 
 
 
@@ -1594,7 +1618,7 @@ adapter&rsquo;s own declarations, so where this page and the command differ, the
 </span></span><span style="display:flex;"><span>asz conversation ID                 talk · run · llm.call · tool
 </span></span><span style="display:flex;"><span>asz conversation -terms native ID   talk · trace_id · id · run_type: tool
 </span></span><span style="display:flex;"><span>asz conversation -terms both ID     run  <span style="color:#0550ae">(</span>trace_id<span style="color:#0550ae">)</span>
-</span></span></code></pre></div><p><strong>60 terms: 17 that LangChain names, 43 this project derives.</strong> That ratio is worth watching against
+</span></span></code></pre></div><p><strong>61 terms: 17 that LangChain names, 44 this project derives.</strong> That ratio is worth watching against
 the Claude Code one. A framework that records its own graph in detail still has no word for a
 conversation boundary, a context reset or a delegated agent — which is the whole reason this model
 exists separately from any product&rsquo;s.</p>
@@ -1798,6 +1822,12 @@ not there.</p>
       </tr>
       <tr>
           <td><code>control.interrupt</code></td>
+          <td>—</td>
+          <td>derived here</td>
+          <td>no equivalent</td>
+      </tr>
+      <tr>
+          <td><code>control.notice</code></td>
           <td>—</td>
           <td>derived here</td>
           <td>no equivalent</td>
@@ -2139,6 +2169,12 @@ not there.</p>
 
     </div>
     
+
+
+
+
+
+
 
 
 
