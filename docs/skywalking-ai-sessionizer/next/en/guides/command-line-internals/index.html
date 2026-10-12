@@ -33,7 +33,7 @@ sources Discovers sessions under the source root and counts their files without 
   <meta itemprop="name" content="Command Line Internals">
   <meta itemprop="description" content="Command Line Internals The details behind Command Line: what each report counts, how the page reads a storage root, how verify proves a stream whole, and how a scenario root behaves.
 sources Discovers sessions under the source root and counts their files without landing anything. The first line names the source root it resolved. Sessions removed by the include and exclude filters are counted on the filtered line. Then comes one row per session: directories, execution streams, child-agent sidecars, workflow journals and manifests. A line with the total of sessions and streams follows the table.">
-  <meta itemprop="wordCount" content="3938">
+  <meta itemprop="wordCount" content="4044">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Command Line Internals">
   <meta name="twitter:description" content="Command Line Internals The details behind Command Line: what each report counts, how the page reads a storage root, how verify proves a stream whole, and how a scenario root behaves.
@@ -1546,7 +1546,7 @@ sources Discovers sessions under the source root and counts their files without 
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 6fbf0ae</div>
+                  <div class="commit-id">Commit Id: 423d8b3</div>
                 
 
 
@@ -1961,6 +1961,12 @@ one that was edited or cut short. Such a file ends the check with an error that 
 <code>N record(s) landed more than once by an interrupted pass; assembly removes them</code>. A file lands
 before its cursor is committed, so an interrupted pass repeats data rather than losing it.
 <a href="../../formats/storage-root#landed-files">Storage Root</a> explains the order.</p>
+<p>A part whose payload was <a href="../../formats/session-data#too-large-to-land">too large to land</a> is
+counted the same way, with the provider bodies that cannot be rebuilt because of it: verify prints
+<code>N part(s) were too large to land and hold their size and digest only; M provider body(ies) cannot be rebuilt for it</code>. The collector left the payload out on purpose, so the file fits its budget. A
+body that holds or refers to such a piece is not damage: its references are still checked, and its
+record&rsquo;s <code>bytes</code> and <code>sha</code> are still held to its manifest. Only the comparison of its rebuilt bytes
+with its digest cannot be made.</p>
 
 </div>
 
@@ -2118,6 +2124,8 @@ before its cursor is committed, so an interrupted pass repeats data rather than 
 
     </div>
     
+
+
 
 
 

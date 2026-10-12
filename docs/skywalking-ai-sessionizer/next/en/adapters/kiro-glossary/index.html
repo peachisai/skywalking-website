@@ -35,7 +35,7 @@ Two words here mean something other than what a reader might expect. Kiro’s ex
   <meta itemprop="description" content="Kiro Glossary What Kiro’s V3 agent engine calls the things the project glossary names, and where each one appears in the files it writes.
 The dialect is kiro/1. That names the vocabulary, not the adapter: kiro-local says how records were acquired, the dialect says how they are read.
 Two words here mean something other than what a reader might expect. Kiro’s execution is one turn, which is a Run here. And Kiro writes a subagent’s records in a file of their own, a sub-execution, which is a child stream here.">
-  <meta itemprop="wordCount" content="955">
+  <meta itemprop="wordCount" content="973">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Kiro Glossary">
   <meta name="twitter:description" content="Kiro Glossary What Kiro’s V3 agent engine calls the things the project glossary names, and where each one appears in the files it writes.
@@ -1549,7 +1549,7 @@ Two words here mean something other than what a reader might expect. Kiro’s ex
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 6fbf0ae</div>
+                  <div class="commit-id">Commit Id: 423d8b3</div>
                 
 
 
@@ -1959,7 +1959,7 @@ not there.</p>
           <td><code>segment</code></td>
           <td>—</td>
           <td>derived here</td>
-          <td>an activity window chosen for commit</td>
+          <td>an activity window</td>
       </tr>
       <tr>
           <td><code>size_only</code></td>
@@ -1984,6 +1984,12 @@ not there.</p>
           <td>—</td>
           <td>derived here</td>
           <td>one readable interaction: a prompt and the turn it opened</td>
+      </tr>
+      <tr>
+          <td><code>too_large</code></td>
+          <td>—</td>
+          <td>derived here</td>
+          <td>no equivalent: asz omits a payload whose record alone is larger than a landed file&rsquo;s byte budget</td>
       </tr>
       <tr>
           <td><code>trigger</code></td>
@@ -2166,6 +2172,8 @@ not there.</p>
 
     </div>
     
+
+
 
 
 

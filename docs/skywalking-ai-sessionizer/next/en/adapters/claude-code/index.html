@@ -33,7 +33,7 @@ Verified against Claude Code 2.1.220 – 2.1.251. No earlier version was availab
   <meta itemprop="name" content="Claude Code Adapter">
   <meta itemprop="description" content="Claude Code Adapter How the Unified Conversation Model maps onto Claude Code. Every mapping below is stated with the evidence that supports it and, where a concept cannot be supplied, said to be unavailable rather than approximated.
 Verified against Claude Code 2.1.220 – 2.1.251. No earlier version was available for measurement, so nothing here is confirmed below 2.1.220. The attachments that carry what the runtime sent the model were measured on 2.1.259 – 2.1.286, as Step mapping says.">
-  <meta itemprop="wordCount" content="10516">
+  <meta itemprop="wordCount" content="10523">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Claude Code Adapter">
   <meta name="twitter:description" content="Claude Code Adapter How the Unified Conversation Model maps onto Claude Code. Every mapping below is stated with the evidence that supports it and, where a concept cannot be supplied, said to be unavailable rather than approximated.
@@ -1546,7 +1546,7 @@ Verified against Claude Code 2.1.220 – 2.1.251. No earlier version was availab
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 6fbf0ae</div>
+                  <div class="commit-id">Commit Id: 423d8b3</div>
                 
 
 
@@ -2184,7 +2184,7 @@ output count of 5 or less, against 101 of 66,751 finished ones. Usage availabili
 conversation continuing past them, and 7,311 of them had their tools run. Nothing waits for them,
 and nothing is marked open.</li>
 </ul>
-<p>Every <code>llm.call</code> node in a round carries <code>fragments</code> and <code>usage_from: last_fragment_in_line_order</code>. A
+<p>Every <code>llm.call</code> node in a round carries <code>usage_from: last_fragment_in_line_order</code>, and its <code>refs</code> are its fragments in line order. A
 finished call adds <code>usage: observed_replayable</code> and <code>usage_at</code>, the <code>{seq, row}</code> of the fragment the
 usage is read from. An unfinished call has <code>usage: unavailable</code> and <code>stop_reason: unavailable</code>.
 <a href="../../formats/asz-view#a-node-in-talks">asz.view</a> copies the token counts from the one record
@@ -2977,6 +2977,8 @@ survives, and the key is <em>absent</em> rather than null.</li>
 
     </div>
     
+
+
 
 
 

@@ -35,7 +35,7 @@ Two words here mean something other than what a reader might expect, and both ma
   <meta itemprop="description" content="LangChain Glossary What LangChain and its tracing client call the things the project glossary names, and where each one appears in the data they send.
 The dialect is langsmith/1. That names the vocabulary, not the adapter: langsmith-ingest says how records were acquired, the dialect says how they are read.
 Two words here mean something other than what a reader might expect, and both matter. The client’s session is the project, not a conversation. And its run is any step of the graph, so most runs are not what this model calls a Run — the invocation they share, trace_id, is.">
-  <meta itemprop="wordCount" content="1004">
+  <meta itemprop="wordCount" content="1022">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="LangChain Glossary">
   <meta name="twitter:description" content="LangChain Glossary What LangChain and its tracing client call the things the project glossary names, and where each one appears in the data they send.
@@ -1549,7 +1549,7 @@ Two words here mean something other than what a reader might expect, and both ma
   })()
 </script>
 
-                  <div class="commit-id">Commit Id: 6fbf0ae</div>
+                  <div class="commit-id">Commit Id: 423d8b3</div>
                 
 
 
@@ -1932,7 +1932,7 @@ not there.</p>
           <td><code>segment</code></td>
           <td>—</td>
           <td>derived here</td>
-          <td>an activity window chosen for commit</td>
+          <td>an activity window</td>
       </tr>
       <tr>
           <td><code>size_only</code></td>
@@ -1975,6 +1975,12 @@ not there.</p>
           <td>—</td>
           <td>derived here</td>
           <td>no equivalent yet: a provider&rsquo;s reasoning arrives inside the message content</td>
+      </tr>
+      <tr>
+          <td><code>too_large</code></td>
+          <td>—</td>
+          <td>derived here</td>
+          <td>no equivalent: asz omits a payload whose record alone is larger than a landed file&rsquo;s byte budget</td>
       </tr>
       <tr>
           <td><code>trigger</code></td>
@@ -2169,6 +2175,8 @@ not there.</p>
 
     </div>
     
+
+
 
 
 
